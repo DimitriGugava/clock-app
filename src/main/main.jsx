@@ -8,6 +8,7 @@ import daytime from "../assets/mobile/bg-image-daytime.jpg";
 import InfoCont from "../infoCont/infoCont";
 import { useQuery } from "@tanstack/react-query";
 import moon from "../icons/moon.svg";
+import backgroundImage from "../assets/mobile/bg-image-nighttime.jpg";
 
 const Main = () => {
   const [more, setMore] = useState(true);
@@ -17,6 +18,7 @@ const Main = () => {
   const [hour, setHour] = useState("");
   const [utc, setUtc] = useState("");
   const [dayOrNight, setDayOrNight] = useState(true);
+  const [rotateIcon, setRotateIcon] = useState(false);
 
   const {
     data: quoteData,
@@ -61,6 +63,7 @@ const Main = () => {
 
   const showMore = () => {
     setMore(!more);
+    setRotateIcon(!rotateIcon);
   };
 
   useEffect(() => {
@@ -98,16 +101,22 @@ const Main = () => {
   }, [mapData]);
 
   const dayOrNightFunc = () => {
-    if (hour >= "06:00" && hour <= "18:00") {
-      setDayOrNight(true);
-    } else {
-      setDayOrNight(false);
-    }
+    const isDayTime = hour >= "06:00" && hour <= "18:00";
+    setDayOrNight(isDayTime);
+  };
+  useEffect(() => {
+    dayOrNightFunc();
+  }, [hour]);
+
+  const backgroundStyle = {
+    backgroundImage: `url(${dayOrNight ? daytime : backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   };
 
   return (
     <>
-      <div className="main_Container">
+      <div className="main_Container" style={backgroundStyle}>
         <div className="background_Opacity">
           {more && (
             <div className="header_Quote_Box">
@@ -152,11 +161,14 @@ const Main = () => {
               className="more_Round_Button"
               src={morebutton}
               alt="moreButton"
+              style={{
+                transform: rotateIcon ? "rotate(180deg)" : "rotate(0deg)",
+              }}
             />
           </button>
         </div>
       </div>
-      {!more && <InfoCont />}
+      {!more && <InfoCont map={map} setMap={setMap} dayOrNight={dayOrNight} />}
     </>
   );
 };
