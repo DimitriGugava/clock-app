@@ -7,12 +7,16 @@ import morebutton from "../icons/morebutton.svg";
 import daytime from "../assets/mobile/bg-image-daytime.jpg";
 import InfoCont from "../infoCont/infoCont";
 import { useQuery } from "@tanstack/react-query";
+import moon from "../icons/moon.svg";
 
 const Main = () => {
   const [more, setMore] = useState(true);
   const [quoteText, setQuoteText] = useState("");
   const [map, setMap] = useState("");
   const [location, setLocation] = useState("");
+  const [hour, setHour] = useState("");
+  const [utc, setUtc] = useState("");
+  const [dayOrNight, setDayOrNight] = useState(true);
 
   const {
     data: quoteData,
@@ -38,22 +42,22 @@ const Main = () => {
       ),
   });
 
-  const fetchLocationInfo = () => {
-    const apiKey = "R6jzPOhADfw0Y05rK623JIj6bHOr0UJBqVr4mCAQ";
-    const ip = mapData.client_ip;
-    return fetch(
-      `https://api.ipbase.com/v2/info?apikey=${apiKey}&ip=${ip}`
-    ).then((res) => res.json());
-  };
+  // const fetchLocationInfo = () => {
+  //   const apiKey = "R6jzPOhADfw0Y05rK623JIj6bHOr0UJBqVr4mCAQ";
+  //   const ip = mapData.client_ip;
+  //   return fetch(
+  //     `https://api.ipbase.com/v2/info?apikey=${apiKey}&ip=${ip}`
+  //   ).then((res) => res.json());
+  // };
 
-  const {
-    data: locationData,
-    isLoading: isLocationLoading,
-    isError: isLocationError,
-  } = useQuery({
-    queryKey: ["locationInfo"],
-    queryFn: fetchLocationInfo,
-  });
+  // const {
+  //   data: locationData,
+  //   isLoading: isLocationLoading,
+  //   isError: isLocationError,
+  // } = useQuery({
+  //   queryKey: ["locationInfo"],
+  //   queryFn: fetchLocationInfo,
+  // });
 
   const showMore = () => {
     setMore(!more);
@@ -65,20 +69,41 @@ const Main = () => {
     }
   }, [quoteData]);
 
+  // useEffect(() => {
+  //   const cityName = locationData?.data?.location.city.name;
+  //   if (cityName) {
+  //     setLocation(cityName);
+  //   } else {
+  //     console.log("City name not available in locationData");
+  //   }
+  // }, [locationData]);
+
   useEffect(() => {
     if (mapData) {
       setMap(mapData);
     }
   }, [mapData]);
+  console.log(map);
 
   useEffect(() => {
-    const cityName = locationData?.data?.location?.city?.name;
-    if (cityName) {
-      setLocation(cityName);
-    } else {
-      console.log("City name not available in locationData");
+    if (mapData && mapData.datetime) {
+      const timePart = mapData.datetime.split("T")[1]; // // Assuming timePart = "09:10:13.938216+04:00" or similar format
+      const hourAndMinutes = timePart.split(":").slice(0, 2).join(":");
+
+      const utc_Func = mapData.utc_offset;
+
+      setHour(hourAndMinutes);
+      setUtc(utc_Func);
     }
-  }, [locationData]);
+  }, [mapData]);
+
+  const dayOrNightFunc = () => {
+    if (hour >= "06:00" && hour <= "18:00") {
+      setDayOrNight(true);
+    } else {
+      setDayOrNight(false);
+    }
+  };
 
   return (
     <>
@@ -101,15 +126,24 @@ const Main = () => {
 
           <div className="info_Box">
             <div className="day_Or_Night_Box">
-              <img className="sunOrMoon" src={sun} alt="sun" />
-              <span className="welcomeText">Good Morning</span>
+              {dayOrNight ? (
+                <>
+                  <img className="sunOrMoon" src={sun} alt="sun" />
+                  <span className="welcomeText">Good Morning</span>
+                </>
+              ) : (
+                <>
+                  <img className="sunOrMoon" src={moon} alt="moon" />
+                  <span className="welcomeText">Good Evening</span>
+                </>
+              )}
             </div>
             <div className="clock_Location_Info_Box">
               <div className="clock_Box">
-                <div className="clock">11:37</div>
-                <div className="clock_Time_Zone_Text">BST</div>
+                <div className="clock">{hour}</div>
+                <div className="clock_Time_Zone_Text">{utc}</div>
               </div>
-              <span className="location_Text">in{location}</span>
+              <span className="location_Text">in {location}</span>
             </div>
           </div>
           <button className="more_Button_Container" onClick={showMore}>
