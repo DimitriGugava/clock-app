@@ -44,22 +44,22 @@ const Main = () => {
       ),
   });
 
-  // const fetchLocationInfo = () => {
-  //   const apiKey = "R6jzPOhADfw0Y05rK623JIj6bHOr0UJBqVr4mCAQ";
-  //   const ip = mapData.client_ip;
-  //   return fetch(
-  //     `https://api.ipbase.com/v2/info?apikey=${apiKey}&ip=${ip}`
-  //   ).then((res) => res.json());
-  // };
+  const fetchLocationInfo = () => {
+    const apiKey = "R6jzPOhADfw0Y05rK623JIj6bHOr0UJBqVr4mCAQ";
+    const ip = mapData.client_ip;
+    return fetch(
+      `https://api.ipbase.com/v2/info?apikey=${apiKey}&ip=${ip}`
+    ).then((res) => res.json());
+  };
 
-  // const {
-  //   data: locationData,
-  //   isLoading: isLocationLoading,
-  //   isError: isLocationError,
-  // } = useQuery({
-  //   queryKey: ["locationInfo"],
-  //   queryFn: fetchLocationInfo,
-  // });
+  const {
+    data: locationData,
+    isLoading: isLocationLoading,
+    isError: isLocationError,
+  } = useQuery({
+    queryKey: ["locationInfo"],
+    queryFn: fetchLocationInfo,
+  });
 
   const showMore = () => {
     setMore(!more);
@@ -72,14 +72,14 @@ const Main = () => {
     }
   }, [quoteData]);
 
-  // useEffect(() => {
-  //   const cityName = locationData?.data?.location.city.name;
-  //   if (cityName) {
-  //     setLocation(cityName);
-  //   } else {
-  //     console.log("City name not available in locationData");
-  //   }
-  // }, [locationData]);
+  useEffect(() => {
+    const cityName = locationData?.data?.location.city.name;
+    if (cityName) {
+      setLocation(cityName);
+    } else {
+      console.log("City name not available in locationData");
+    }
+  }, [locationData]);
 
   useEffect(() => {
     if (mapData) {
