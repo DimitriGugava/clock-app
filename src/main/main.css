@@ -185,3 +185,225 @@
 .more_Round_Button:hover {
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  .main_Container {
+    background-image: url("../assets/tablet/bg-image-daytime.jpg");
+  }
+
+  .header_Quote_Box {
+    width: 499px;
+    height: 231px;
+    flex-shrink: 0;
+  }
+
+  .quote_Text_Box {
+    width: 573px;
+    height: 125px;
+    flex-shrink: 0;
+  }
+
+  .quote_Text {
+    width: 540px;
+    color: #fff;
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .spin {
+    width: 16.667px;
+    height: 16.667px;
+    flex-shrink: 0;
+    fill: #fff;
+    opacity: 0.5;
+  }
+
+  .info_Box {
+    width: 499px;
+    height: 231px;
+    flex-shrink: 0;
+  }
+
+  .day_Or_Night_Box {
+    display: inline-flex;
+    padding-right: 4px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sunOrMoon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .welcomeText {
+    color: #fff;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: 3.6px;
+    text-transform: uppercase;
+  }
+
+  .clock_Location_Info_Box {
+    width: 499px;
+    height: 240px;
+  }
+
+  .clock_Box {
+    width: 175px;
+    height: 175px;
+  }
+
+  .clock {
+    color: #fff;
+    width: 175px;
+    height: 175px;
+    font-size: 175px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 175px; /* 100% */
+    letter-spacing: -4.375px;
+  }
+
+  .clock_Time_Zone_Text {
+    color: #fff;
+    margin-left: 220px;
+    margin-top: 120px;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px; /* 87.5% */
+    text-transform: uppercase;
+  }
+
+  .location_Text {
+    color: #fff;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: 3.6px;
+    text-transform: uppercase;
+  }
+
+  .more_Button_Container {
+    width: 146px;
+    height: 56px;
+    flex-shrink: 0;
+    color: #000;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 175% */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .more_Round_Button {
+    border-radius: 28px;
+    background: #fff;
+  }
+  .more_Round_Button:hover {
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main_Container {
+    background-image: url("../assets/desktop/bg-image-daytime.jpg");
+  }
+
+  .header_Quote_Box {
+    width: 499px;
+    height: 231px;
+    flex-shrink: 0;
+  }
+
+  .quote_Text_Box {
+    width: 573px;
+    height: 125px;
+    flex-shrink: 0;
+  }
+
+  .quote_Text {
+    width: 540px;
+    color: #fff;
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .spin {
+    width: 16.667px;
+    height: 16.667px;
+    flex-shrink: 0;
+    fill: #fff;
+    opacity: 0.5;
+  }
+
+  .info_Box {
+    width: 499px;
+    height: 231px;
+    flex-shrink: 0;
+  }
+
+  .day_Or_Night_Box {
+    display: inline-flex;
+    padding-right: 4px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sunOrMoon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .welcomeText {
+    color: #fff;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: 3.6px;
+    text-transform: uppercase;
+  }
+
+  .clock_Location_Info_Box {
+    width: 499px;
+    height: 240px;
+  }
+
+  .clock_Box {
+    width: 175px;
+    height: 175px;
+  }
+
+  .clock {
+    color: #fff;
+    width: 175px;
+    height: 175px;
+    font-size: 175px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 175px; /* 100% */
+    letter-spacing: -4.375px;
+  }
+
+  .clock_Time_Zone_Text {
+    color: #fff;
+    margin-left: 220px;
+    margin-top: 120px;
+  }
+}
