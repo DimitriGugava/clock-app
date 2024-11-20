@@ -30,7 +30,7 @@ const Main = () => {
     queryFn: () =>
       fetch("https://api.adviceslip.com/advice").then((res) => res.json()),
   });
-
+  //adding comment
   const {
     data: mapData,
     isLoading: isMapLoading,
